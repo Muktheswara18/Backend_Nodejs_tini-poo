@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 const productRoutes = require("./routes/productRoutes");
 
 const app = express()
-const PORT =4000;
+const PORT = process.env.PORT|| 4000;
 
 dotEnv.config()
 
@@ -28,6 +28,6 @@ mongoose.connect(process.env.MONGO_URI)
     app.listen(PORT,()=>{
         console.log(`server stareted and running at ${PORT}`);
     });
-    app.use('/home',(req,res)=>{
-        res.send("<h1> welcome")
+    app.use('/',(req,res)=>{
+        res.send("<h1> welcome to tini-poo")
     })
