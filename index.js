@@ -5,18 +5,21 @@ const vendorRoutes= require('./routes/vendorRoutes');
 const Firmroutes = require('./routes/firmRoutes');
 const prodcutRoutes = require('./routes/productRoutes')
 const path = require('path')
-
 const bodyParser = require('body-parser');
 const productRoutes = require("./routes/productRoutes");
+const cors =require('cors');
 
 const app = express()
+
 const PORT = process.env.PORT|| 4000;
 
 dotEnv.config()
-
+app.use(cors())
 mongoose.connect(process.env.MONGO_URI)
 .then(()=>console.log("mongoDB connecggted"))
 .catch((error)=>console.log(error))
+
+    app.use(express.json());
 
     app.use(bodyParser.json());
     app.use('/vendor',vendorRoutes);
